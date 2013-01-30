@@ -11,7 +11,6 @@
 #define M_PI 3.14159265
 #endif
 #define MOUSE_SPEED 0.5f
-#define PLAYER_RANGE 3.0f
 
 
 bool_t game_running = TRUE;
@@ -39,7 +38,7 @@ void Game_Init(void)
 
 	//SDL
 	SDL_Init(SDL_INIT_VIDEO);
-	SDL_SetVideoMode(SCREEN_W, SCREEN_H, 16, SDL_HWSURFACE | SDL_OPENGL | SDL_FULLSCREEN);
+	SDL_SetVideoMode(SCREEN_W, SCREEN_H, 16, SDL_HWSURFACE | SDL_OPENGL);
 	SDL_WM_SetCaption("OpenCraft", NULL);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, TRUE);
 	SDL_ShowCursor(SDL_FALSE);
@@ -71,7 +70,7 @@ void Game_Init(void)
 		bpos.y = BLOCK_W * y;
 		s = y;
 
-		for(x=0; x<100; x++)
+		for(x=0; x<50; x++)
 		{
 			if(s++ % 2)
 				World_AddBlock(myWorld, Block_NewBlock(&bpos, BLOCK_DIRT));

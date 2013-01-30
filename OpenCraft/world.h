@@ -5,13 +5,12 @@
 struct world
 {
 	struct block *blocks;
-	//const char *name;
+	//char *name;
 	//...
 };
 
 struct world *World_NewWorld(void);
 void World_AddBlock(struct world *wrld, struct block *blck);
-//void World_AddNewBlock(struct world *wrld, struct vec3 *pos, enum block_type type);
 struct block *World_FindBlock(struct world *wrld, struct vec3 *pos);
 struct block *World_FindBlockXY(struct world *wrld, float x, float y);
 void World_DelBlock(struct world *wrld, struct block *block);

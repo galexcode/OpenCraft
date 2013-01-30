@@ -1,11 +1,13 @@
 #include "game.h"
 #include <SDL/SDL.h>
+#include "fpscounter.h"
 
 int main(int argc, char **argv)
 {
 	unsigned int time_start, time_end;
 
 	Game_Init();
+	FPSCount_Init();
 	
 	while(game_running)
 	{
@@ -14,6 +16,7 @@ int main(int argc, char **argv)
 		Game_Draw();
 		SDL_GL_SwapBuffers();
 		time_end = SDL_GetTicks();
+		FPSCount_Tick();
 
 		if(1000/FPS > time_end - time_start)
 			SDL_Delay(1000/FPS - (time_end - time_start));

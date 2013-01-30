@@ -17,19 +17,6 @@ void World_AddBlock(struct world *wrld, struct block *blck)
 	wrld->blocks = blck;
 }
 
-/*void World_AddNewBlock(struct world *wrld, struct vec3 *pos, enum block_type type)
-{
-	struct block *blck;
-	struct col3 col = {1.0f, 1.0f, 1.0f};
-
-	blck = malloc(sizeof(struct block));
-	blck->pos = *pos;
-	blck->type = type;
-	blck->col = col;
-	wrld->blocks = blck;
-	blck->next = wrld->blocks;
-}*/
-
 struct block *World_FindBlock(struct world *wrld, struct vec3 *pos)
 {
 	struct block *i;

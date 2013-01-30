@@ -94,8 +94,6 @@ void Block_UpdateBlock(struct block *blck)
 	//if(blck is inside viewfrustum)
 	//	blck->visible = 1;
 	//	else blck->visible = 0;
-
-	//blck->visible = 1;
 }
 
 void Block_DrawBlock(struct block *blck)
