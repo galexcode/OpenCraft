@@ -48,9 +48,9 @@ void Player_Draw(struct player *plr)
 	glColor3f(1.0f, 1.0f, 0.0f);
 
 	glTranslatef(plr->pos.x, plr->pos.y, plr->pos.z);
-	glRotatef(plr->rot.x, 1.0f, 0.0f, 0.0f);
-	glRotatef(plr->rot.y, 0.0f, 1.0f, 0.0f);
 	glRotatef(plr->rot.z, 0.0f, 0.0f, 1.0f);
+	glRotatef(plr->rot.y, 0.0f, 1.0f, 0.0f);
+	glRotatef(plr->rot.x, 1.0f, 0.0f, 0.0f);
 
 	glBegin(GL_TRIANGLES);
 	glVertex3f(1.0f, -1.0f, 0.0f);
@@ -65,4 +65,5 @@ void Player_Draw(struct player *plr)
 void Player_Free(struct player *plr)
 {
 	free(plr);
+	plr = NULL;
 }

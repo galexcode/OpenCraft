@@ -8,8 +8,6 @@ Technologies used:
 	- SDL
 	- OpenGL
 	- DevIL (Image Library)
-	
-Technologies that will be used in the future:
 	- OpenAL
 	
 Features that will be added definitely in the future:

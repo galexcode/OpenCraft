@@ -10,7 +10,7 @@ extern bool_t game_running;
 void Game_Init(void);
 void Game_Update(void);
 void Game_Draw(void);
-void Game_Quit();
+void Game_Quit(void);
 
 
 

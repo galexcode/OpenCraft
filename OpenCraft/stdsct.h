@@ -1,5 +1,6 @@
 #ifndef __STDSCT_H
 #define __STDSCT_H
+#include <stdint.h>
 #define TRUE 1
 #define FALSE 0
 

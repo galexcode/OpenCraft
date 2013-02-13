@@ -7,6 +7,7 @@
 #include "world.h"
 #include "camera.h"
 #include "player.h"
+#include "haudio.h"
 #ifndef M_PI
 #define M_PI 3.14159265
 #endif
@@ -17,6 +18,7 @@ bool_t game_running = TRUE;
 struct world *myWorld;
 float cam_speed = 0.05f;
 struct player *myPlayer;
+struct haudio *song;
 
 
 static void glPerspective(double fovy, double aspect, double zNear, double zFar)
@@ -35,6 +37,7 @@ void Game_Init(void)
 {
 	struct vec3 bpos = {0.0f, 0.0f, 0.0f};
 	int y, s;
+	enum audioerr err;
 
 	//SDL
 	SDL_Init(SDL_INIT_VIDEO);
@@ -63,7 +66,7 @@ void Game_Init(void)
 	Block_LoadTextures();
 
 	myWorld = World_NewWorld();
-	for(y=0; y<40; y++)
+	for(y=0; y<10; y++)
 	{
 		int x;
 
@@ -87,6 +90,12 @@ void Game_Init(void)
 
 	myPlayer = Player_NewPlayer();
 	Player_SetPos3f(myPlayer, 13.0f, 5.0f, 5.0f);
+	//Audio
+	Audio_Init();
+	song = Audio_NewHandle();
+	err = Audio_LoadWAV(song, "song.wav");
+	if(err == AUDIO_NO_ERR)
+		Audio_Play(song);
 }
 
 void Game_Update(void)
@@ -127,6 +136,15 @@ void Game_Update(void)
 			Cam_Bind(&myPlayer->pos, &myPlayer->rot);
 		keys[SDLK_RCTRL] = FALSE;
 	}
+	if(keys[SDLK_RETURN])
+	{
+		if(Audio_GetPaused(song))
+			Audio_Play(song);
+		else Audio_Pause(song);
+
+
+		keys[SDLK_RETURN] = FALSE;
+	}
 
 	World_UpdateWorld(myWorld);
 }
@@ -138,7 +156,6 @@ void Game_Draw(void)
 
 	Cam_Draw();
 	Player_Draw(myPlayer);
-
 	World_DrawWorld(myWorld);
 }
 
@@ -148,5 +165,7 @@ void Game_Quit(void)
 	World_Free(myWorld);
 	Block_FreeTextures();
 	Block_FreeDisplayList();
+	Audio_Free(song);
+	Audio_Quit();
 	SDL_Quit();
 }
