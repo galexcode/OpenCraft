@@ -1,0 +1,8 @@
+ipch/
+Release/
+Relase/Release/
+*.sdf
+*.sln
+*.vcxproj
+*.filters
+*.user
